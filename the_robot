@@ -1,0 +1,74 @@
+
+
+
+#include <AFMotor.h>
+AF_DCMotor motor(4);
+AF_DCMotor motor1(3);
+ const int se=1;
+long dis;
+float cm;
+const int trig=A0;
+const int pw =A1;
+int d=25;
+const int b=A5;
+
+
+
+void setup() 
+{
+ pinMode(b,OUTPUT);
+ 
+ 
+  
+  Serial.begin(9600);
+   motor.setSpeed(200);
+  motor.run(RELEASE);
+   motor1.setSpeed(200);
+  motor1.run(RELEASE);}
+ 
+
+
+
+void loop() {
+   motor.run(FORWARD);
+ motor1.run(FORWARD);
+  pinMode(trig,OUTPUT);
+digitalWrite(trig,LOW);
+delay(10);
+digitalWrite(trig,HIGH);
+delay(d);
+digitalWrite(trig,LOW);
+pinMode(pw,INPUT);
+dis=pulseIn(pw,HIGH);
+cm=dis/55.8;
+Serial.println(cm);
+delay(100);
+
+ 
+  if(cm<5)
+{
+  digitalWrite(b,HIGH);
+  delay(500);
+  digitalWrite(b,LOW);
+   motor.run(RELEASE);
+  motor1.run(RELEASE);
+  delay (1000);
+
+ motor.run(BACKWARD);
+  motor1.run(BACKWARD);
+ delay(1000);
+      motor.run(FORWARD);
+  motor1.run(BACKWARD);
+  delay(500);
+
+}
+if(cm>5)
+{
+  
+  motor.run(FORWARD);
+  motor1.run(FORWARD);
+
+   
+}
+
+}
