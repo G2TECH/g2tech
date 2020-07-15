@@ -1,0 +1,588 @@
+
+#include <Servo.h>
+
+Servo myservo;
+Servo m1;
+Servo m2;
+Servo m3;// create servo object to control a servo
+// twelve servo objects can be created on most boards
+int buz=6;
+int pos =90;    // variable to store the servo position
+
+void setup() {
+  myservo.attach(4);
+  m1.attach(5);
+  m2.attach(6);
+  m3.attach(7);
+   pinMode(buz,OUTPUT);
+  Serial.begin(9600);// attaches the servo on pin 9 to the servo object
+nor();
+delay(300);
+ Serial.println("loading");
+}
+
+void loop()
+{
+   
+
+if(Serial.available())
+  {
+    int z=Serial.read();
+    if(z==49)
+  {
+    
+    Serial.print("obstacle avoiding mode activated");
+    Serial.println(".");
+   
+    tune2();
+    obs();
+   nor();
+delay(30);
+  }
+
+ else if(z==50)
+  {
+    Serial.print("following mode activated");
+    Serial.print(".");
+    
+    
+    tune5();
+follow();
+    
+ nor();
+delay(30);
+  }
+  
+ else if(z==51)
+  {
+    Serial.print("dancing mode activated");
+    Serial.print(".");
+   
+    
+    tune3();
+dance();
+    
+ nor();
+delay(30);
+  }
+  
+ else if(z==52)
+  {
+    Serial.print("lift your left leg cmnt activated");
+    Serial.print(".");
+  
+    
+    tune2();
+llg();
+    
+  nor();
+delay(30);
+  }
+  
+  else if(z==53)
+  {
+    Serial.print("lift your ri8 leg cmnt activated");
+    Serial.print(".");
+ 
+   
+    tune2();
+ rlg();
+    
+ nor();
+delay(30);
+  }
+   
+else if(z==54)
+  {
+    Serial.print("moving forward");
+    Serial.print(".");
+ 
+    
+    tune1();
+ forw();
+    
+ nor();
+delay(30);
+  }
+ 
+   
+ else if(z==55)
+  {
+    Serial.print("moving backward");
+    Serial.print(".");
+  
+    
+    tune1();
+  bckwrd();
+    
+ nor();
+delay(30);
+  }
+   
+else if(z==56)
+  {
+    Serial.print("left");
+    Serial.print(".");
+    delay(100);
+    
+    tune1();
+  left();
+    nor();
+    delay(30);  
+  }
+}
+}
+ 
+void forw()
+{ 
+  for(int ab=0;ab<=10;ab++)
+    {
+  for(int j=78;j>=45;j-=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+  
+  
+  for(pos=90;pos<=150;pos+=1)
+  {
+     m2.write(pos-90);
+    delay(5);
+     m3.write(pos);
+    delay(5);
+   
+ 
+  }
+  
+    for(int j=45;j<=78;j+=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+ 
+  for(int i=25;i<=55;i+=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+   
+  for(pos=150;pos>=90;pos-=1)
+  {
+     m2.write(pos-90);
+    delay(5);
+     m3.write(pos);
+    delay(5);
+   
+   
+  
+  } 
+  for(int i=55;i>=25;i-=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+ 
+}
+  
+}
+void forw1()
+{ 
+  for(int ab=0;ab<=10;ab++)
+    {
+  for(int j=78;j>=45;j-=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+  
+  
+  for(pos=90;pos<=150;pos+=1)
+  {
+     m2.write(pos-90);
+    delay(5);
+     m3.write(pos);
+    delay(5);
+   
+ 
+  }
+  
+    for(int j=45;j<=78;j+=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+ 
+  for(int i=25;i<=55;i+=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+   
+  for(pos=150;pos>=90;pos-=1)
+  {
+     m2.write(pos-90);
+    delay(5);
+     m3.write(pos);
+    delay(5);
+   
+   
+  
+  } 
+  for(int i=55;i>=25;i-=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+ 
+break;}
+
+}
+void bckwrd()
+{
+  for(int ab=0;ab<=15;ab++)
+    {
+  int p=150;
+{
+   for(int j=78;j>=45;j-=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+  
+  
+  for(p=150;p>=90;p-=1)
+  {
+     m2.write(p-90);
+    delay(5);
+     m3.write(p);
+    delay(5);
+   
+ 
+  }
+  
+    for(int j=45;j<=78;j+=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+ 
+  for(int i=25;i<=55;i+=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+   
+  for(p=90;p<=150;p+=1)
+  {
+     m2.write(p-90);
+    delay(5);
+     m3.write(p);
+    delay(5);
+   
+   
+  
+  } 
+  for(int i=55;i>=25;i-=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+  
+  
+}
+}}
+void bckwrd1()
+{
+  for(int ab=0;ab<=15;ab++)
+    {
+  int p=150;
+{
+   for(int j=78;j>=45;j-=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+  
+  
+  for(p=150;p>=90;p-=1)
+  {
+     m2.write(p-90);
+    delay(5);
+     m3.write(p);
+    delay(5);
+   
+ 
+  }
+  
+    for(int j=45;j<=78;j+=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+ 
+  for(int i=25;i<=55;i+=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+   
+  for(p=90;p<=150;p+=1)
+  {
+     m2.write(p-90);
+    delay(5);
+     m3.write(p);
+    delay(5);
+   
+   
+  
+  } 
+  for(int i=55;i>=25;i-=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+  
+  
+}
+break;}}
+void left()
+{
+  for(int ab=0;ab<=15;ab++)
+    {
+ for(int j=78;j>=45;j-=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+  
+  
+  for(pos=90;pos<=150;pos+=1)
+  {
+     m2.write(pos-90);
+    delay(5);
+     m3.write(pos);
+    delay(5);
+  }
+  
+    for(int j=45;j<=78;j+=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+ 
+  for(int i=25;i<=55;i+=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+   
+  for(pos=150;pos>=90;pos-=1)
+  {
+     m2.write(pos-90);
+    delay(5);
+    
+   
+   
+  
+  }
+   for(pos=150;pos>=90;pos-=5)
+  {
+     m3.write(pos);
+    delay(5);
+  }
+ for(int i=55;i>=25;i-=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+  
+  
+}}
+ void dance()
+ {
+  for(int ab=0;ab<=15;ab++)
+    {
+  for(int i=65;i>=10;i-=1)
+  {
+    m2.write(0);
+    myservo.write(i);
+    delay(5);
+  }
+  
+   for(int i=10;i<=60;i+=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+  for(int j=60;j<=120;j+=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+  for(int i=60;i<=65;i+=1)
+  {
+    myservo.write(i);
+    delay(5);
+  }
+   
+  
+  for(int j=120;j>=60;j-=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+  
+ } }
+ void rlg()
+ {
+  for(int ab=0;ab<=15;ab++)
+    {
+      m2.write(10);
+    
+   for(int j=60;j<=150;j+=1)
+  {
+    m1.write(j);
+    delay(5);
+  }
+   for(int i=1;i<=100;i+=1)
+  {
+    myservo.write(90);
+    delay(5);
+  }
+ }}
+void llg()
+{
+  for(int ab=0;ab<=15;ab++)
+    {
+ for(int i=55;i>=0;i-=1)
+  {
+    
+    myservo.write(i);
+    delay(5);
+  } 
+ for(int k=1;k<=100;k+=1)
+  {
+    m1.write(20);
+    delay(5);
+  } 
+}}
+void nor()
+{
+   m2.write(0);
+  m3.write(90); 
+  m1.write(70);
+   myservo.write(55);
+}
+void obs()
+{const int se=1;
+long dis;
+float cm;
+const int trig=11;
+const int pw =10;
+int d=25;
+
+  for(int ab=0;ab<=15;ab++)
+    {
+   
+ pinMode(trig,OUTPUT);
+digitalWrite(trig,LOW);
+delay(10);
+digitalWrite(trig,HIGH);
+delay(d);
+digitalWrite(trig,LOW);
+pinMode(pw,INPUT);
+dis=pulseIn(pw,HIGH);
+cm=dis/55.8;
+Serial.println(cm);
+delay(100);
+    
+if(cm<5)
+{
+  tune1();
+  bckwrd1();
+  delay(500);
+}
+if(cm>5)
+{
+  forw1();
+  delay(500);
+}
+    }
+}
+void follow()
+{
+  
+ const int se=1;
+long dis;
+float cm;
+const int trig=11;
+const int pw =10;
+int d=25;
+ for(int ab=0;ab<=15;ab++)
+    {
+ pinMode(trig,OUTPUT);
+digitalWrite(trig,LOW);
+delay(10);
+digitalWrite(trig,HIGH);
+delay(d);
+digitalWrite(trig,LOW);
+pinMode(pw,INPUT);
+dis=pulseIn(pw,HIGH);
+cm=dis/55.8;
+Serial.println(cm);
+delay(100);
+if(cm<5)
+{
+   forw1();
+  delay(500);
+}
+if(cm>5)
+{
+  tune2();
+nor();
+delay(500);  
+} 
+}
+}
+void tune1()
+{
+  tone(buz,440,500);
+  delay(500);
+  noTone(buz);
+}
+void tune2()
+{
+   
+  tone(buz,523,500);
+  delay(500);
+  noTone(buz);
+  delay(100);
+}
+
+void tune3()
+{
+  
+  tone(buz,698,500);
+  delay(500);
+  noTone(buz);
+  delay(100);
+}
+
+void tune4()
+{
+   
+  tone(buz,880,500);
+  delay(500);
+  noTone(buz);
+  delay(100);
+}
+
+void tune5()
+{
+  
+  
+  tone(buz,587,500);
+  delay(500);
+  noTone(buz);
+  delay(100);
+}
